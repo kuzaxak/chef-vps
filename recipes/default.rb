@@ -14,13 +14,13 @@ ssh_known_hosts_entry 'github.com'
 
 users_manage 'sysadmin' do
   group_id 3000
-  action [:create]
+  action [:remove, :create]
 end
 
 # Node specific users group
 users_manage node.name do
   group_id 3100
-  action [:create]
+  action [:remove, :create]
 end
 
 node.default['authorization']['sudo']['groups'] = ['sysadmin']

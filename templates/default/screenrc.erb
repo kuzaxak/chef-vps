@@ -1,0 +1,21 @@
+# .screenrc settings
+startup_message off
+
+defutf8 on
+
+vbell on
+defscrollback 5000
+autodetach on
+
+# general
+shelltitle "$ |bash"
+
+# enable SHIFT-PGUP / SHIFT-PGDOWN scroll
+termcapinfo xterm* ti@:te@
+
+# change window with ALT-Q and ALT-W
+bindkey "^[q" prev
+bindkey "^[w" next
+
+# status // change first %{= M} --> %{= kM} to display status on black background
+hardstatus alwayslastline '%{= M} %H%{= G} %l %= %{= w}%-w%{+b r}%n*%t%{-b r}%{w}%+w %= %{c}%d %D %{B}%c '
