@@ -1,4 +1,4 @@
-version = '2.4.1'
+version = node['ruby']['version']
 
 rbenv_system_install 'system'
 rbenv_ruby version

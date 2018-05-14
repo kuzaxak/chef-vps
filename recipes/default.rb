@@ -17,6 +17,12 @@ users_manage 'sysadmin' do
   action [:create]
 end
 
+# Node specific users group
+users_manage node.name do
+  group_id 3100
+  action [:create]
+end
+
 node.default['authorization']['sudo']['groups'] = ['sysadmin']
 node.default['authorization']['sudo']['passwordless'] = true
 include_recipe "sudo"
