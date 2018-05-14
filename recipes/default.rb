@@ -4,6 +4,8 @@
 #
 # Copyright:: 2018, The Authors, All Rights Reserved.
 
+apt_update
+
 node['main']['packages'].each do |pkg|
     package pkg
 end
