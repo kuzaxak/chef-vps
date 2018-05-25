@@ -6,6 +6,18 @@
 
 apt_update
 
+case node['platform_family']
+  when 'rhel'
+    node.normal['yum-cron']['daily']['commands'] = {
+        'update_cmd' => 'security',
+        'update_messages' => 'yes',
+        'download_updates' => 'yes',
+        'apply_updates' => 'yes',
+        'random_sleep' => 360
+      }
+    include_recipe 'yum-cron::default'
+end
+
 node['main']['packages'].each do |pkg|
     package pkg
 end
