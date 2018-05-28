@@ -29,6 +29,11 @@ users_manage 'sysadmin' do
   action [:remove, :create]
 end
 
+users_manage 'deploy' do
+  group_id 3200
+  action [:remove, :create]
+end
+
 # Node specific users group
 users_manage node.name do
   group_id 3100
