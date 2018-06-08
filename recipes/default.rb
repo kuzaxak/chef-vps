@@ -16,6 +16,9 @@ case node['platform_family']
         'random_sleep' => 360
       }
     include_recipe 'yum-cron::default'
+    package 'nc'
+  when 'debian'
+    package 'netcat'
 end
 
 node['main']['packages'].each do |pkg|
