@@ -57,3 +57,7 @@ node.default['oh-my-zsh']['plugins']['custom'].each do |name, repo|
 end
 
 execute 'sudo chsh -s /bin/zsh root'
+execute 'disable dirty_files' do
+  command 'git config --global oh-my-zsh.hide-dirty 1'
+  action :run
+end
