@@ -14,6 +14,8 @@ search(node['users']['data_bag'], 'NOT action:remove').each do |user|
       group user['id']
       enable_submodules true
       depth 1
+
+      not_if { File.exist?("/home/#{user['id']}/.oh-my-zsh") }
     end
 
     node.default['oh-my-zsh']['plugins']['custom'].each do |name, repo|
@@ -23,6 +25,8 @@ search(node['users']['data_bag'], 'NOT action:remove').each do |user|
         user user['id']
         group user['id']
         depth 1
+
+        not_if { File.exist?("/home/#{user['id']}/.oh-my-zsh/custom/plugins/#{name}") }
       end
     end
 end
@@ -44,6 +48,8 @@ git "/root/.oh-my-zsh" do
   group user
   enable_submodules true
   depth 1
+
+  not_if { File.exist?("/root/.oh-my-zsh") }
 end
 
 node.default['oh-my-zsh']['plugins']['custom'].each do |name, repo|
@@ -53,6 +59,8 @@ node.default['oh-my-zsh']['plugins']['custom'].each do |name, repo|
     user user
     group user
     depth 1
+
+    not_if { File.exist?("/root/.oh-my-zsh/custom/plugins/#{name}") }
   end
 end
 
