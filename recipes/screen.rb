@@ -7,5 +7,7 @@ search(node['users']['data_bag'], 'NOT action:remove').each do |user|
     group user['id']
     mode '0744'
     action :create
+
+    only_if "getent passwd #{user['id']}"
   end
 end
