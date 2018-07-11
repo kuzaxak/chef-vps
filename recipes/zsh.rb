@@ -34,18 +34,8 @@ search(node['users']['data_bag'], 'NOT action:remove').each do |user|
       end
     end
 
-    directory "/home/#{user['id']}/.git" do
-      user user['id']
-      group user['id']
-      mode '0755'
-      recursive true
-      action :create
-
-      only_if "getent passwd #{user['id']}"
-    end
-
     execute 'disable dirty_files' do
-      command "sudo su -c \"cd && git config oh-my-zsh.hide-dirty 1\" #{user['id']}"
+      command "sudo su -c \"cd && git config --global oh-my-zsh.hide-dirty 1\" #{user['id']}"
       action :run
 
       only_if "getent passwd #{user['id']}"
